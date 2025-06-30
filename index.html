@@ -7,7 +7,7 @@
     body { font-family: Arial, sans-serif; max-width:700px; margin:auto; padding:20px; background:#f9f9f9; }
     header { display: flex; justify-content: space-between; align-items: center; position: relative; }
     h1 { margin: 0 auto; }
-    #langSwitcher { position: absolute; top: 10px; left: 10px; }
+    #langSwitcher { position: absolute; top: 10px; right: 10px; }
     .hidden { display:none; }
     form { background:#fff; padding:15px; border-radius:8px; box-shadow:0 0 10px #ccc; margin-bottom: 20px;}
     label { display:block; margin-top:10px; font-weight:600; }
@@ -24,11 +24,13 @@
 <body>
 
 <header>
+  <h1 id="mainTitle">Recora - Sistema de Pedidos</h1>
   <select id="langSwitcher" aria-label="Cambiar idioma">
     <option value="es">🇪🇸 Español</option>
     <option value="fr">🇫🇷 Français</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="de">🇩🇪 Deutsch</option>
   </select>
-  <h1 id="mainTitle">Recora - Sistema de Pedidos</h1>
 </header>
 
 <!-- Panel usuario -->
@@ -126,6 +128,10 @@
   <h2 id="adminTitle">Panel de Pedidos (Solo Admin)</h2>
   <button id="btnExportarCSV">Exportar pedidos a CSV</button>
   <button id="btnCerrarAdmin" style="margin-left:10px;">Cerrar Panel</button>
+
+  <label for="searchPedidos" id="labelSearchPedidos" style="font-weight:600; margin-top:10px; display:block;">Buscar pedidos (usuario o tipo):</label>
+  <input type="text" id="searchPedidos" placeholder="Buscar..." style="width:100%; padding:6px; margin-bottom:10px; box-sizing:border-box;" />
+
   <table>
     <thead>
       <tr>
@@ -173,6 +179,7 @@
       adminTitle: "Panel de Pedidos (Solo Admin)",
       btnExportarCSV: "Exportar pedidos a CSV",
       btnCerrarAdmin: "Cerrar Panel",
+      labelSearchPedidos: "Buscar pedidos (usuario o tipo):",
       alertLoginFail: "Usuario o contraseña incorrectos.",
       alertRegisterExists: "Ese correo ya está registrado.",
       alertRegisterSuccess: "Registro exitoso. Ahora inicia sesión.",
@@ -214,6 +221,7 @@
       adminTitle: "Tableau des commandes (Admin uniquement)",
       btnExportarCSV: "Exporter les commandes en CSV",
       btnCerrarAdmin: "Fermer le tableau",
+      labelSearchPedidos: "Rechercher des commandes (utilisateur ou type) :",
       alertLoginFail: "Utilisateur ou mot de passe incorrect.",
       alertRegisterExists: "Cet email est déjà enregistré.",
       alertRegisterSuccess: "Inscription réussie. Veuillez vous connecter.",
@@ -223,442 +231,488 @@
       alertSelectTipo: "Sélectionnez si la commande est pour un animal ou une personne.",
       alertAdminOnly: "Seul l'administrateur peut voir ce panneau.",
       alertNoPedidos: "Il n'y a pas de commandes à exporter."
+    },
+    en: {
+      mainTitle: "Recora - Order System",
+      loginTitle: "Login",
+      labelLoginEmail: "Email:",
+      labelLoginPass: "Password:",
+      btnLogin: "Login",
+      pRegister: "No account? ",
+      btnShowRegister: "Register",
+      registerTitle: "Registration",
+      labelRegisterEmail: "Email:",
+      labelRegisterPass: "Password:",
+      btnRegister: "Register",
+      btnBackToLogin: "Back to login",
+      pedidoTitle: "New Order",
+      labelTipo: "Who is the product for?",
+      tipoMascota: "Pet",
+      tipoPersona: "Person",
+      labelNombreAnimal: "Animal's name:",
+      labelForma: "Shape:",
+      labelNombreDueno: "Owner's name:",
+      labelTelefono: "Owner's phone:",
+      labelEmail: "Owner's email:",
+      labelTipoProducto: "Product type:",
+      labelMaterialProducto: "Material:",
+      labelFotoPersona: "Upload photo:",
+      labelTextoPersona: "Custom text (only if no audio):",
+      labelAudio: "Optional audio (recording):",
+      btnEnviarPedido: "Send order",
+      adminTitle: "Orders Panel (Admin only)",
+      btnExportarCSV: "Export orders to CSV",
+      btnCerrarAdmin: "Close Panel",
+      labelSearchPedidos: "Search orders (user or type):",
+      alertLoginFail: "Incorrect username or password.",
+      alertRegisterExists: "That email is already registered.",
+      alertRegisterSuccess: "Registration successful. Please log in.",
+      alertFillAll: "Please fill in all required fields.",
+      alertTextAudioRequired: "You must enter text or record audio.",
+      alertNotLoggedIn: "You must be logged in to send orders.",
+      alertSelectTipo: "Select if the order is for a pet or person.",
+      alertAdminOnly: "Only admin can view this panel.",
+      alertNoPedidos: "No orders to export."
+    },
+    de: {
+      mainTitle: "Recora - Bestellsystem",
+      loginTitle: "Anmeldung",
+      labelLoginEmail: "Email:",
+      labelLoginPass: "Passwort:",
+      btnLogin: "Einloggen",
+      pRegister: "Kein Konto? ",
+      btnShowRegister: "Registrieren",
+      registerTitle: "Registrierung",
+      labelRegisterEmail: "Email:",
+      labelRegisterPass: "Passwort:",
+      btnRegister: "Registrieren",
+      btnBackToLogin: "Zurück zur Anmeldung",
+      pedidoTitle: "Neue Bestellung",
+      labelTipo: "Für wen ist das Produkt?",
+      tipoMascota: "Haustier",
+      tipoPersona: "Person",
+      labelNombreAnimal: "Name des Tieres:",
+      labelForma: "Form:",
+      labelNombreDueno: "Name des Besitzers:",
+      labelTelefono: "Telefon des Besitzers:",
+      labelEmail: "Email des Besitzers:",
+      labelTipoProducto: "Produkttyp:",
+      labelMaterialProducto: "Material:",
+      labelFotoPersona: "Foto hochladen:",
+      labelTextoPersona: "Benutzerdefinierter Text (nur wenn kein Audio):",
+      labelAudio: "Optionales Audio (Aufnahme):",
+      btnEnviarPedido: "Bestellung senden",
+      adminTitle: "Bestellübersicht (Nur Admin)",
+      btnExportarCSV: "Bestellungen als CSV exportieren",
+      btnCerrarAdmin: "Panel schließen",
+      labelSearchPedidos: "Bestellungen suchen (Benutzer oder Typ):",
+      alertLoginFail: "Benutzername oder Passwort falsch.",
+      alertRegisterExists: "Diese E-Mail ist bereits registriert.",
+      alertRegisterSuccess: "Registrierung erfolgreich. Bitte anmelden.",
+      alertFillAll: "Bitte alle erforderlichen Felder ausfüllen.",
+      alertTextAudioRequired: "Sie müssen Text eingeben oder Audio aufnehmen.",
+      alertNotLoggedIn: "Sie müssen angemeldet sein, um Bestellungen zu senden.",
+      alertSelectTipo: "Wählen Sie, ob die Bestellung für ein Haustier oder eine Person ist.",
+      alertAdminOnly: "Nur Admin kann dieses Panel sehen.",
+      alertNoPedidos: "Keine Bestellungen zum Exportieren."
     }
   };
 
-  // Variables globales
+  let currentLang = 'es';
   let currentUser = null;
   let mediaRecorder = null;
   let chunks = [];
   let audioBlob = null;
-  let currentLang = 'es';
 
-  // Elementos DOM
-  const langSwitcher = document.getElementById("langSwitcher");
   const mainTitle = document.getElementById("mainTitle");
   const userPanel = document.getElementById("userPanel");
   const userEmailSpan = document.getElementById("userEmail");
   const loginSection = document.getElementById("loginSection");
-  const registerSection = document.getElementById("registerSection");
-  const pedidoSection = document.getElementById("pedidoSection");
-  const adminPanel = document.getElementById("adminPanel");
-
-  // Login elements
   const loginForm = document.getElementById("loginForm");
-  const loginEmail = document.getElementById("loginEmail");
-  const loginPass = document.getElementById("loginPass");
-  const btnShowRegister = document.getElementById("btnShowRegister");
-
-  // Register elements
+  const registerSection = document.getElementById("registerSection");
   const registerForm = document.getElementById("registerForm");
-  const registerEmail = document.getElementById("registerEmail");
-  const registerPass = document.getElementById("registerPass");
-  const btnBackToLogin = document.getElementById("btnBackToLogin");
-
-  // Pedido form elements
+  const pedidoSection = document.getElementById("pedidoSection");
   const pedidoForm = document.getElementById("pedidoForm");
-  const tipoDestino = document.getElementById("tipoDestino");
-
+  const tipoDestinoSelect = document.getElementById("tipoDestino");
   const formMascota = document.getElementById("formMascota");
-  const nombreAnimal = document.getElementById("nombreAnimal");
-  const formaAnimal = document.getElementById("formaAnimal");
-  const nombreDueno = document.getElementById("nombreDueno");
-  const telefonoDueno = document.getElementById("telefonoDueno");
-  const emailDueno = document.getElementById("emailDueno");
-
   const formPersona = document.getElementById("formPersona");
-  const tipoProducto = document.getElementById("tipoProducto");
-  const materialProducto = document.getElementById("materialProducto");
-  const fotoPersona = document.getElementById("fotoPersona");
-  const textoPersona = document.getElementById("textoPersona");
-  const grabarAudioBtn = document.getElementById("grabarAudio");
-  const audioGrabado = document.getElementById("audioGrabado");
-
   const urlOutput = document.getElementById("urlOutput");
-
-  // Admin panel elements
+  const btnGrabarAudio = document.getElementById("grabarAudio");
+  const audioGrabado = document.getElementById("audioGrabado");
+  const adminPanel = document.getElementById("adminPanel");
   const tablaPedidosBody = document.getElementById("tablaPedidosBody");
-  const btnExportarCSV = document.getElementById("btnExportarCSV");
-  const btnCerrarAdmin = document.getElementById("btnCerrarAdmin");
+  const searchPedidosInput = document.getElementById("searchPedidos");
+  const langSwitcher = document.getElementById("langSwitcher");
 
-  // Usuarios guardados en localStorage
-  const usuariosKey = "usuarios";
-  let usuarios = JSON.parse(localStorage.getItem(usuariosKey) || "{}");
-
-  // Crear admin si no existe
-  if (!usuarios["admin@recora.com"]) {
-    usuarios["admin@recora.com"] = { pass: "recora123" };
-    localStorage.setItem(usuariosKey, JSON.stringify(usuarios));
-  }
-
-  // Función para traducir textos según idioma
-  function traducir(lang) {
-    const t = langData[lang];
+  // Función para traducir toda la interfaz
+  function traducirUI(lang) {
     currentLang = lang;
+    const d = langData[lang];
 
-    mainTitle.textContent = t.mainTitle;
-    document.getElementById("loginTitle").textContent = t.loginTitle;
-    document.getElementById("labelLoginEmail").textContent = t.labelLoginEmail;
-    document.getElementById("labelLoginPass").textContent = t.labelLoginPass;
-    document.getElementById("btnLogin").textContent = t.btnLogin;
-    document.getElementById("pRegister").firstChild.textContent = t.pRegister;
-    btnShowRegister.textContent = t.btnShowRegister;
+    mainTitle.textContent = d.mainTitle;
 
-    document.getElementById("registerTitle").textContent = t.registerTitle;
-    document.getElementById("labelRegisterEmail").textContent = t.labelRegisterEmail;
-    document.getElementById("labelRegisterPass").textContent = t.labelRegisterPass;
-    document.getElementById("btnRegister").textContent = t.btnRegister;
-    btnBackToLogin.textContent = t.btnBackToLogin;
+    document.getElementById("loginTitle").textContent = d.loginTitle;
+    document.getElementById("labelLoginEmail").textContent = d.labelLoginEmail;
+    document.getElementById("labelLoginPass").textContent = d.labelLoginPass;
+    document.getElementById("btnLogin").textContent = d.btnLogin;
+    document.getElementById("pRegister").firstChild.textContent = d.pRegister;
+    document.getElementById("btnShowRegister").textContent = d.btnShowRegister;
 
-    document.getElementById("pedidoTitle").textContent = t.pedidoTitle;
-    document.getElementById("labelTipo").textContent = t.labelTipo;
-    document.getElementById("labelNombreAnimal").textContent = t.labelNombreAnimal;
-    document.getElementById("labelForma").textContent = t.labelForma;
-    document.getElementById("labelNombreDueno").textContent = t.labelNombreDueno;
-    document.getElementById("labelTelefono").textContent = t.labelTelefono;
-    document.getElementById("labelEmail").textContent = t.labelEmail;
-    document.getElementById("labelTipoProducto").textContent = t.labelTipoProducto;
-    document.getElementById("labelMaterialProducto").textContent = t.labelMaterialProducto;
-    document.getElementById("labelFotoPersona").textContent = t.labelFotoPersona;
-    document.getElementById("labelTextoPersona").textContent = t.labelTextoPersona;
-    document.getElementById("labelAudio").textContent = t.labelAudio;
-    document.getElementById("btnEnviarPedido").textContent = t.btnEnviarPedido;
+    document.getElementById("registerTitle").textContent = d.registerTitle;
+    document.getElementById("labelRegisterEmail").textContent = d.labelRegisterEmail;
+    document.getElementById("labelRegisterPass").textContent = d.labelRegisterPass;
+    document.getElementById("btnRegister").textContent = d.btnRegister;
+    document.getElementById("btnBackToLogin").textContent = d.btnBackToLogin;
 
-    document.getElementById("adminTitle").textContent = t.adminTitle;
-    btnExportarCSV.textContent = t.btnExportarCSV;
-    btnCerrarAdmin.textContent = t.btnCerrarAdmin;
+    document.getElementById("pedidoTitle").textContent = d.pedidoTitle;
+    document.getElementById("labelTipo").textContent = d.labelTipo;
+
+    tipoDestinoSelect.options[1].textContent = d.tipoMascota;
+    tipoDestinoSelect.options[2].textContent = d.tipoPersona;
+
+    document.getElementById("labelNombreAnimal").textContent = d.labelNombreAnimal;
+
+    const formaAnimalOptions = document.getElementById("formaAnimal").options;
+    formaAnimalOptions[0].textContent = d.formaRedonda || "Redonda";
+    formaAnimalOptions[1].textContent = d.formaCuadrada || "Cuadrada";
+    formaAnimalOptions[2].textContent = d.formaHueso || "Hueso";
+
+    document.getElementById("labelNombreDueno").textContent = d.labelNombreDueno;
+    document.getElementById("labelTelefono").textContent = d.labelTelefono;
+    document.getElementById("labelEmail").textContent = d.labelEmail;
+
+    document.getElementById("labelTipoProducto").textContent = d.labelTipoProducto;
+
+    const tipoProductoOptions = document.getElementById("tipoProducto").options;
+    tipoProductoOptions[0].textContent = d.tipoProductoLlaveros || "Llaveros";
+    tipoProductoOptions[1].textContent = d.tipoProductoPulseras || "Pulseras";
+    tipoProductoOptions[2].textContent = d.tipoProductoPlacas || "Placas";
+
+    document.getElementById("labelMaterialProducto").textContent = d.labelMaterialProducto;
+
+    const materialOptions = document.getElementById("materialProducto").options;
+    materialOptions[0].textContent = d.materialAcero || "Acero";
+    materialOptions[1].textContent = d.materialMadera || "Madera";
+    materialOptions[2].textContent = d.materialAcrilico || "Acrílico";
+
+    document.getElementById("labelFotoPersona").textContent = d.labelFotoPersona;
+    document.getElementById("labelTextoPersona").textContent = d.labelTextoPersona;
+    document.getElementById("labelAudio").textContent = d.labelAudio;
+    btnGrabarAudio.textContent = "🎤 " + (lang === 'fr' ? "Enregistrer" : lang === 'en' ? "Record" : lang === 'de' ? "Aufnehmen" : "Grabar");
+
+    document.getElementById("btnEnviarPedido").textContent = d.btnEnviarPedido;
+
+    document.getElementById("adminTitle").textContent = d.adminTitle;
+    document.getElementById("btnExportarCSV").textContent = d.btnExportarCSV;
+    document.getElementById("btnCerrarAdmin").textContent = d.btnCerrarAdmin;
+    document.getElementById("labelSearchPedidos").textContent = d.labelSearchPedidos;
   }
 
-  // Cambiar idioma
   langSwitcher.addEventListener("change", e => {
-    traducir(e.target.value);
+    traducirUI(e.target.value);
   });
 
-  // Mostrar registro
-  btnShowRegister.addEventListener("click", () => {
-    loginSection.classList.add("hidden");
-    registerSection.classList.remove("hidden");
-  });
-
-  // Volver login
-  btnBackToLogin.addEventListener("click", () => {
-    registerSection.classList.add("hidden");
-    loginSection.classList.remove("hidden");
-  });
-
-  // Login
-  loginForm.onsubmit = e => {
-    e.preventDefault();
-    const email = loginEmail.value.trim().toLowerCase();
-    const pass = loginPass.value.trim();
-    if (usuarios[email] && usuarios[email].pass === pass) {
-      currentUser = email;
-      mostrarUsuario();
-      loginSection.classList.add("hidden");
-      pedidoSection.classList.remove("hidden");
-      registerSection.classList.add("hidden");
-      adminPanel.classList.add("hidden");
-      resetPedidoForm();
-    } else {
-      alert(langData[currentLang].alertLoginFail);
-    }
-  };
-
-  // Registro
-  registerForm.onsubmit = e => {
-    e.preventDefault();
-    const email = registerEmail.value.trim().toLowerCase();
-    const pass = registerPass.value.trim();
-    if (!email || !pass) {
-      alert(langData[currentLang].alertFillAll);
-      return;
-    }
-    if (usuarios[email]) {
-      alert(langData[currentLang].alertRegisterExists);
-      return;
-    }
-    usuarios[email] = { pass };
-    localStorage.setItem(usuariosKey, JSON.stringify(usuarios));
-    alert(langData[currentLang].alertRegisterSuccess);
-    registerSection.classList.add("hidden");
-    loginSection.classList.remove("hidden");
-  };
-
-  // Mostrar info usuario
-  function mostrarUsuario() {
-    userEmailSpan.textContent = currentUser;
-    userPanel.classList.remove("hidden");
-  }
-
-  // Logout
-  function logout() {
-    currentUser = null;
-    userPanel.classList.add("hidden");
-    pedidoSection.classList.add("hidden");
-    adminPanel.classList.add("hidden");
-    loginSection.classList.remove("hidden");
-    loginForm.reset();
-  }
-
-  // Mostrar admin panel (solo admin)
-  function mostrarAdminPanel() {
-    if (currentUser !== "admin@recora.com") {
-      alert(langData[currentLang].alertAdminOnly);
-      return;
-    }
-    adminPanel.classList.remove("hidden");
-    cargarPedidosEnTabla();
-  }
-
-  // Mostrar formulario según tipo pedido
-  tipoDestino.addEventListener("change", () => {
-    if (tipoDestino.value === "mascota") {
+  // Mostrar form mascota o persona según selección
+  tipoDestinoSelect.addEventListener("change", () => {
+    if(tipoDestinoSelect.value === "mascota"){
       formMascota.classList.remove("hidden");
       formPersona.classList.add("hidden");
-    } else if (tipoDestino.value === "persona") {
+    } else if(tipoDestinoSelect.value === "persona"){
       formPersona.classList.remove("hidden");
       formMascota.classList.add("hidden");
     } else {
       formMascota.classList.add("hidden");
       formPersona.classList.add("hidden");
     }
-    urlOutput.textContent = "";
-    audioGrabado.classList.add("hidden");
-    audioBlob = null;
-    textoPersona.value = "";
-    fotoPersona.value = "";
   });
 
-  // Reset formulario pedido
-  function resetPedidoForm() {
-    pedidoForm.reset();
-    formMascota.classList.add("hidden");
-    formPersona.classList.add("hidden");
-    urlOutput.textContent = "";
-    audioGrabado.classList.add("hidden");
-    audioBlob = null;
+  // Simulación simple de usuarios (localStorage para demo)
+  function getUsers(){
+    return JSON.parse(localStorage.getItem("users") || "[]");
+  }
+  function saveUser(email, password){
+    let users = getUsers();
+    if(users.find(u=>u.email === email)) return false;
+    users.push({email,password});
+    localStorage.setItem("users", JSON.stringify(users));
+    return true;
+  }
+  function checkUser(email, password){
+    let users = getUsers();
+    return users.find(u=>u.email === email && u.password === password);
   }
 
-  // Grabar audio
-  grabarAudioBtn.addEventListener("click", () => {
-    if (mediaRecorder && mediaRecorder.state === "recording") {
-      mediaRecorder.stop();
-      grabarAudioBtn.textContent = "🎤 Grabar audio";
+  // Login
+  loginForm.addEventListener("submit", e=>{
+    e.preventDefault();
+    const email = loginForm.loginEmail.value.trim();
+    const pass = loginForm.loginPass.value.trim();
+    if(checkUser(email,pass)){
+      currentUser = email;
+      loginSection.classList.add("hidden");
+      registerSection.classList.add("hidden");
+      pedidoSection.classList.remove("hidden");
+      userPanel.classList.remove("hidden");
+      userEmailSpan.textContent = email;
+      cargarPedidos();
     } else {
-      startRecording();
+      alert(langData[currentLang].alertLoginFail);
     }
   });
 
-  function startRecording() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      alert("Tu navegador no soporta grabación de audio.");
-      return;
+  // Registro
+  registerForm.addEventListener("submit", e=>{
+    e.preventDefault();
+    const email = registerForm.registerEmail.value.trim();
+    const pass = registerForm.registerPass.value.trim();
+    if(saveUser(email, pass)){
+      alert(langData[currentLang].alertRegisterSuccess);
+      registerSection.classList.add("hidden");
+      loginSection.classList.remove("hidden");
+    } else {
+      alert(langData[currentLang].alertRegisterExists);
     }
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(stream => {
-        mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.start();
-        grabarAudioBtn.textContent = "⏹️ Detener grabación";
-        chunks = [];
-        mediaRecorder.ondataavailable = e => chunks.push(e.data);
-        mediaRecorder.onstop = e => {
-          audioBlob = new Blob(chunks, { type: "audio/webm" });
-          const audioURL = URL.createObjectURL(audioBlob);
-          audioGrabado.src = audioURL;
-          audioGrabado.classList.remove("hidden");
-        };
-      })
-      .catch(() => alert("Permiso denegado para grabar audio."));
+  });
+
+  // Mostrar registro y login
+  document.getElementById("btnShowRegister").addEventListener("click", ()=>{
+    loginSection.classList.add("hidden");
+    registerSection.classList.remove("hidden");
+  });
+  document.getElementById("btnBackToLogin").addEventListener("click", ()=>{
+    registerSection.classList.add("hidden");
+    loginSection.classList.remove("hidden");
+  });
+
+  // Logout
+  function logout(){
+    currentUser = null;
+    userPanel.classList.add("hidden");
+    pedidoSection.classList.add("hidden");
+    loginSection.classList.remove("hidden");
+    adminPanel.classList.add("hidden");
   }
 
-  // Guardar pedidos en localStorage
-  const pedidosKey = "recoraPedidos";
-
-  function guardarPedido(pedido) {
-    const pedidos = JSON.parse(localStorage.getItem(pedidosKey) || "[]");
+  // Pedidos guardados localmente
+  function getPedidos(){
+    return JSON.parse(localStorage.getItem("pedidos") || "[]");
+  }
+  function savePedido(pedido){
+    let pedidos = getPedidos();
     pedidos.push(pedido);
-    localStorage.setItem(pedidosKey, JSON.stringify(pedidos));
-  }
-
-  // Generar URL legible para pedido mascota
-  function generarUrlMascota(p) {
-    // Usar valores URL amigables (solo letras, números y guiones)
-    const safe = str => str.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    return `https://recora.link/mascota/${safe(p.nombreAnimal)}-${safe(p.formaAnimal)}-${safe(p.nombreDueno)}`;
-  }
-
-  // Generar URL legible para pedido persona
-  function generarUrlPersona(p) {
-    const safe = str => str.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    let desc = "";
-    if (p.textoPersona) desc = safe(p.textoPersona);
-    else if (p.audioBlob) desc = "audio";
-    else desc = "sin-descripcion";
-    return `https://recora.link/persona/${safe(p.tipoProducto)}-${safe(p.materialProducto)}-${desc}`;
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
   }
 
   // Enviar pedido
-  pedidoForm.onsubmit = async (e) => {
+  pedidoForm.addEventListener("submit", e=>{
     e.preventDefault();
-
-    if (!currentUser) {
+    if(!currentUser){
       alert(langData[currentLang].alertNotLoggedIn);
       return;
     }
 
-    const tipo = tipoDestino.value;
-    if (!tipo) {
+    if(!tipoDestinoSelect.value){
       alert(langData[currentLang].alertSelectTipo);
       return;
     }
 
-    if (tipo === "mascota") {
-      const p = {
-        tipo: "mascota",
-        nombreAnimal: nombreAnimal.value.trim(),
-        formaAnimal: formaAnimal.value,
-        nombreDueno: nombreDueno.value.trim(),
-        telefonoDueno: telefonoDueno.value.trim(),
-        emailDueno: emailDueno.value.trim(),
-        fecha: new Date().toISOString(),
-        usuario: currentUser
-      };
-      // Validar campos
-      if (!p.nombreAnimal || !p.formaAnimal || !p.nombreDueno || !p.telefonoDueno || !p.emailDueno) {
+    let pedido = { usuario: currentUser, fecha: new Date().toISOString() };
+
+    if(tipoDestinoSelect.value === "mascota"){
+      const nombreAnimal = document.getElementById("nombreAnimal").value.trim();
+      const nombreDueno = document.getElementById("nombreDueno").value.trim();
+      const telefonoDueno = document.getElementById("telefonoDueno").value.trim();
+      const emailDueno = document.getElementById("emailDueno").value.trim();
+      const formaAnimal = document.getElementById("formaAnimal").value;
+
+      if(!nombreAnimal || !nombreDueno || !telefonoDueno || !emailDueno){
         alert(langData[currentLang].alertFillAll);
         return;
       }
-      p.url = generarUrlMascota(p);
-      guardarPedido(p);
-      urlOutput.textContent = "URL generada:\n" + p.url;
-      resetPedidoForm();
-      tipoDestino.value = "";
-      alert("Pedido para mascota guardado correctamente.");
-    }
-    else if (tipo === "persona") {
-      const texto = textoPersona.value.trim();
-      if (!texto && !audioBlob) {
+
+      pedido.tipo = "mascota";
+      pedido.nombreAnimal = nombreAnimal;
+      pedido.formaAnimal = formaAnimal;
+      pedido.nombreDueno = nombreDueno;
+      pedido.telefonoDueno = telefonoDueno;
+      pedido.emailDueno = emailDueno;
+
+      // URL legible para mascota
+      pedido.url = `${window.location.origin}/perdido?animal=${encodeURIComponent(nombreAnimal)}&dueño=${encodeURIComponent(nombreDueno)}&tel=${encodeURIComponent(telefonoDueno)}&email=${encodeURIComponent(emailDueno)}`;
+
+    } else if(tipoDestinoSelect.value === "persona"){
+      const tipoProducto = document.getElementById("tipoProducto").value;
+      const materialProducto = document.getElementById("materialProducto").value;
+      const textoPersona = document.getElementById("textoPersona").value.trim();
+      const fotoPersona = document.getElementById("fotoPersona").files[0]?.name || "";
+
+      if(!tipoProducto || !materialProducto){
+        alert(langData[currentLang].alertFillAll);
+        return;
+      }
+
+      if(!textoPersona && !audioBlob){
         alert(langData[currentLang].alertTextAudioRequired);
         return;
       }
-      // Procesar foto base64
-      let fotoData = null;
-      if (fotoPersona.files.length > 0) {
-        fotoData = await fileToBase64(fotoPersona.files[0]);
-      }
-      const p = {
-        tipo: "persona",
-        tipoProducto: tipoProducto.value,
-        materialProducto: materialProducto.value,
-        textoPersona: texto,
-        audioBlob,
-        fotoBase64: fotoData,
-        fecha: new Date().toISOString(),
-        usuario: currentUser
-      };
-      p.url = generarUrlPersona(p);
-      guardarPedido(p);
-      urlOutput.textContent = "URL generada:\n" + p.url;
-      resetPedidoForm();
-      tipoDestino.value = "";
-      alert("Pedido para persona guardado correctamente.");
-    }
-  };
 
-  // Convertir archivo a base64 (para imagen)
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(null);
-      reader.readAsDataURL(file);
+      pedido.tipo = "persona";
+      pedido.tipoProducto = tipoProducto;
+      pedido.materialProducto = materialProducto;
+      pedido.fotoPersona = fotoPersona;
+      pedido.textoPersona = textoPersona;
+
+      if(audioBlob){
+        const audioUrl = URL.createObjectURL(audioBlob);
+        pedido.audioUrl = audioUrl;
+      }
+    }
+
+    savePedido(pedido);
+    alert("Pedido guardado.");
+    pedidoForm.reset();
+    formMascota.classList.add("hidden");
+    formPersona.classList.add("hidden");
+    urlOutput.textContent = "";
+    audioBlob = null;
+    audioGrabado.classList.add("hidden");
+    cargarPedidos();
+  });
+
+  // Función para filtrar pedidos en admin (buscador)
+  function filtrarPedidos() {
+    const filtro = searchPedidosInput.value.toLowerCase();
+    const pedidos = getPedidos();
+    tablaPedidosBody.innerHTML = "";
+
+    pedidos.forEach(pedido => {
+      const usuarioLower = pedido.usuario.toLowerCase();
+      const tipoLower = pedido.tipo.toLowerCase();
+      if(usuarioLower.includes(filtro) || tipoLower.includes(filtro)){
+        let tr = document.createElement("tr");
+        let tdTipo = document.createElement("td");
+        tdTipo.textContent = pedido.tipo === "mascota" ? langData[currentLang].tipoMascota : langData[currentLang].tipoPersona;
+        tr.appendChild(tdTipo);
+
+        let tdDatos = document.createElement("td");
+        if(pedido.tipo === "mascota"){
+          tdDatos.innerHTML =
+            `<strong>${langData[currentLang].labelNombreAnimal}</strong> ${pedido.nombreAnimal}<br>
+             <strong>${langData[currentLang].labelForma}</strong> ${pedido.formaAnimal}<br>
+             <strong>${langData[currentLang].labelNombreDueno}</strong> ${pedido.nombreDueno}<br>
+             <strong>${langData[currentLang].labelTelefono}</strong> ${pedido.telefonoDueno}<br>
+             <strong>${langData[currentLang].labelEmail}</strong> ${pedido.emailDueno}<br>
+             <a href="${pedido.url}" target="_blank">URL Mascota</a>`;
+        } else {
+          tdDatos.innerHTML =
+            `<strong>${langData[currentLang].labelTipoProducto}</strong> ${pedido.tipoProducto}<br>
+             <strong>${langData[currentLang].labelMaterialProducto}</strong> ${pedido.materialProducto}<br>
+             <strong>${langData[currentLang].labelFotoPersona}</strong> ${pedido.fotoPersona}<br>
+             <strong>${langData[currentLang].labelTextoPersona}</strong> ${pedido.textoPersona}<br>
+             ${pedido.audioUrl ? `<audio controls src="${pedido.audioUrl}"></audio>` : ""}`;
+        }
+        tr.appendChild(tdDatos);
+
+        let tdFecha = document.createElement("td");
+        tdFecha.textContent = new Date(pedido.fecha).toLocaleString();
+        tr.appendChild(tdFecha);
+
+        let tdUsuario = document.createElement("td");
+        tdUsuario.textContent = pedido.usuario;
+        tr.appendChild(tdUsuario);
+
+        tablaPedidosBody.appendChild(tr);
+      }
     });
   }
 
   // Cargar pedidos en tabla admin
-  function cargarPedidosEnTabla() {
-    const pedidos = JSON.parse(localStorage.getItem(pedidosKey) || "[]");
-    tablaPedidosBody.innerHTML = "";
-    if (pedidos.length === 0) {
-      tablaPedidosBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">${langData[currentLang].alertNoPedidos}</td></tr>`;
-      return;
-    }
-    pedidos.forEach(p => {
-      const tr = document.createElement("tr");
-      let datos = "";
-      if (p.tipo === "mascota") {
-        datos = 
-          `Animal: ${p.nombreAnimal}\nForma: ${p.formaAnimal}\nDueño: ${p.nombreDueno}\nTel: ${p.telefonoDueno}\nEmail: ${p.emailDueno}\nURL: ${p.url}`;
-      } else {
-        datos = 
-          `Producto: ${p.tipoProducto}\nMaterial: ${p.materialProducto}\nTexto: ${p.textoPersona || '-'}\nURL: ${p.url}`;
-      }
-      tr.innerHTML = `
-        <td>${p.tipo}</td>
-        <td><pre style="white-space: pre-wrap;">${datos}</pre></td>
-        <td>${new Date(p.fecha).toLocaleString()}</td>
-        <td>${p.usuario}</td>
-      `;
-      tablaPedidosBody.appendChild(tr);
-    });
+  function cargarPedidos(){
+    if(currentUser !== "admin@admin.com") return;
+    adminPanel.classList.remove("hidden");
+    filtrarPedidos();
   }
 
-  // Exportar pedidos a CSV
-  btnExportarCSV.addEventListener("click", () => {
-    if (currentUser !== "admin@recora.com") {
+  // Mostrar panel admin desde botón
+  function mostrarAdminPanel(){
+    if(currentUser !== "admin@admin.com"){
       alert(langData[currentLang].alertAdminOnly);
       return;
     }
-    const pedidos = JSON.parse(localStorage.getItem(pedidosKey) || "[]");
-    if (pedidos.length === 0) {
+    cargarPedidos();
+    adminPanel.classList.remove("hidden");
+  }
+
+  // Cerrar panel admin
+  document.getElementById("btnCerrarAdmin").addEventListener("click", () => {
+    adminPanel.classList.add("hidden");
+  });
+
+  // Exportar pedidos a CSV
+  document.getElementById("btnExportarCSV").addEventListener("click", () => {
+    let pedidos = getPedidos();
+    if(pedidos.length === 0){
       alert(langData[currentLang].alertNoPedidos);
       return;
     }
     let csv = "Tipo,Datos,Fecha,Usuario\n";
     pedidos.forEach(p => {
       let datos = "";
-      if (p.tipo === "mascota") {
-        datos = `"Animal: ${p.nombreAnimal}; Forma: ${p.formaAnimal}; Dueño: ${p.nombreDueno}; Tel: ${p.telefonoDueno}; Email: ${p.emailDueno}; URL: ${p.url}"`;
+      if(p.tipo === "mascota"){
+        datos = `"${p.nombreAnimal}, ${p.formaAnimal}, ${p.nombreDueno}, ${p.telefonoDueno}, ${p.emailDueno}"`;
       } else {
-        datos = `"Producto: ${p.tipoProducto}; Material: ${p.materialProducto}; Texto: ${p.textoPersona || '-'}; URL: ${p.url}"`;
+        datos = `"${p.tipoProducto}, ${p.materialProducto}, ${p.fotoPersona}, ${p.textoPersona}"`;
       }
       csv += `${p.tipo},${datos},${p.fecha},${p.usuario}\n`;
     });
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+
+    const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "pedidos_recora.csv";
+    a.download = "pedidos.csv";
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   });
 
-  // Cerrar panel admin
-  btnCerrarAdmin.addEventListener("click", () => {
-    adminPanel.classList.add("hidden");
-  });
-
-  // Inicializar idioma
-  traducir(currentLang);
-
-  // Al cargar la página, mostrar login o usuario si está guardado
-  window.onload = () => {
-    const lastUser = sessionStorage.getItem("currentUser");
-    if (lastUser && usuarios[lastUser]) {
-      currentUser = lastUser;
-      mostrarUsuario();
-      loginSection.classList.add("hidden");
-      pedidoSection.classList.remove("hidden");
+  // Grabación de audio
+  btnGrabarAudio.addEventListener("click", () => {
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      alert("La grabación no es compatible con este navegador.");
+      return;
     }
-  };
 
-  // Guardar sesión usuario en sessionStorage
-  function mostrarUsuario() {
-    userEmailSpan.textContent = currentUser;
-    userPanel.classList.remove("hidden");
-    sessionStorage.setItem("currentUser", currentUser);
-  }
+    if(mediaRecorder && mediaRecorder.state === "recording"){
+      mediaRecorder.stop();
+      btnGrabarAudio.textContent = "🎤 " + (currentLang === 'fr' ? "Enregistrer" : currentLang === 'en' ? "Record" : currentLang === 'de' ? "Aufnehmen" : "Grabar");
+      return;
+    }
+
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.start();
+      chunks = [];
+      btnGrabarAudio.textContent = (currentLang === 'fr' ? "Arrêter" : currentLang === 'en' ? "Stop" : currentLang === 'de' ? "Stoppen" : "Detener") + " 🎙️";
+
+      mediaRecorder.ondataavailable = e => {
+        chunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = e => {
+        audioBlob = new Blob(chunks, { type: 'audio/webm' });
+        audioGrabado.src = URL.createObjectURL(audioBlob);
+        audioGrabado.classList.remove("hidden");
+      };
+    }).catch(() => {
+      alert("No se pudo acceder al micrófono.");
+    });
+  });
+
+  // Inicializar idioma por defecto
+  traducirUI(currentLang);
 </script>
 
 </body>
 </html>
+
